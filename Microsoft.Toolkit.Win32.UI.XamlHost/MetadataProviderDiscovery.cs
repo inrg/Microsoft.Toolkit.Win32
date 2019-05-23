@@ -22,7 +22,7 @@ namespace Microsoft.Toolkit.Win32.UI.XamlHost
     {
         private static readonly List<Type> FilteredTypes = new List<Type>
         {
-            typeof(XamlApplication),
+            typeof(XamlApplication.App),
             typeof(WUX.Markup.IXamlMetadataProvider)
         };
 

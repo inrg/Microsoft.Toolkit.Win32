@@ -5,6 +5,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using Microsoft.Toolkit.Win32.UI.XamlApplication;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
 using WUX = Windows.UI.Xaml;
 
@@ -22,10 +23,10 @@ namespace Microsoft.Toolkit.Wpf.UI.XamlHost
         /// </summary>
         /// <remarks>
         /// <seealso cref="WUX.Application"/> object is required for loading custom control metadata.  If a custom
-        /// Application object is not provided by the application, the host control will create an instance of <seealso cref="XamlApplication"/>.
+        /// Application object is not provided by the application, the host control will create an instance of <seealso cref="Microsoft.Toolkit.Win32.UI.XamlApplication.App"/>.
         /// Instantiation of the application object must occur before creating the DesktopWindowXamlSource instance.
         /// If no Application object is created before DesktopWindowXamlSource is created, DestkopWindowXamlSource
-        /// will create an instance of <seealso cref="XamlApplication"/> that implements <seealso cref="IXamlMetadataContainer"/>.
+        /// will create an instance of <seealso cref="Microsoft.Toolkit.Win32.UI.XamlApplication.App"/> that implements <seealso cref="IXamlMetadataContainer"/>.
         /// </remarks>
         private static readonly IXamlMetadataContainer _metadataContainer;
 
@@ -81,7 +82,7 @@ namespace Microsoft.Toolkit.Wpf.UI.XamlHost
         }
 
         /// <summary>
-        /// Gets the current instance of <seealso cref="XamlApplication"/>
+        /// Gets the current instance of <seealso cref="Microsoft.Toolkit.Win32.UI.XamlApplication.App"/>
         /// </summary>
         protected static IXamlMetadataContainer MetadataContainer
         {

@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 
-#include "XamlApplication.h"
+#include "App.h"
 
 namespace xaml = ::winrt::Windows::UI::Xaml;
 
@@ -11,9 +11,9 @@ extern "C" {
     WINUSERAPI LRESULT WINAPI DispatchMessageW(_In_ CONST MSG* lpMsg);
 }
 
-namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
+namespace winrt::Microsoft::Toolkit::Win32::UI::XamlApplication::implementation
 {
-    XamlApplication::XamlApplication(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Xaml::Markup::IXamlMetadataProvider> providers)
+    App::App(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Xaml::Markup::IXamlMetadataProvider> providers)
     {
         for(auto provider : providers)
         {
@@ -23,11 +23,11 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
         Initialize();
     }
 
-    XamlApplication::XamlApplication()
+    App::App()
     {
     }
 
-    void XamlApplication::Initialize()
+    void App::Initialize()
     {
         const auto out = outer();
         if (out)
@@ -51,12 +51,12 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
         }
     }
 
-    winrt::Windows::Foundation::IClosable XamlApplication::WindowsXamlManager() const
+    winrt::Windows::Foundation::IClosable App::WindowsXamlManager() const
     {
         return m_windowsXamlManager;
     }
 
-    void XamlApplication::Close()
+    void App::Close()
     {
         if (m_bIsClosed)
         {
@@ -79,12 +79,12 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
         }
     }
 
-    XamlApplication::~XamlApplication()
+    App::~App()
     {
         Close();
     }
 
-    xaml::Markup::IXamlType XamlApplication::GetXamlType(xaml::Interop::TypeName const& type)
+    xaml::Markup::IXamlType App::GetXamlType(xaml::Interop::TypeName const& type)
     {
         for (const auto& provider : m_providers)
         {
@@ -98,7 +98,7 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
         return nullptr;
     }
 
-    xaml::Markup::IXamlType XamlApplication::GetXamlType(winrt::hstring const& fullName)
+    xaml::Markup::IXamlType App::GetXamlType(winrt::hstring const& fullName)
     {
         for (const auto& provider : m_providers)
         {
@@ -112,7 +112,7 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
         return nullptr;
     }
 
-    winrt::com_array<xaml::Markup::XmlnsDefinition> XamlApplication::GetXmlnsDefinitions()
+    winrt::com_array<xaml::Markup::XmlnsDefinition> App::GetXmlnsDefinitions()
     {
         std::list<xaml::Markup::XmlnsDefinition> definitions;
         for (const auto& provider : m_providers)
@@ -127,15 +127,15 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
         return winrt::com_array<xaml::Markup::XmlnsDefinition>(definitions.begin(), definitions.end());
     }
 
-    winrt::Windows::Foundation::Collections::IVector<xaml::Markup::IXamlMetadataProvider> XamlApplication::MetadataProviders()
+    winrt::Windows::Foundation::Collections::IVector<xaml::Markup::IXamlMetadataProvider> App::MetadataProviders()
     {
         return m_providers;
     }
 }
 
-namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::factory_implementation
+namespace winrt::Microsoft::Toolkit::Win32::UI::XamlApplication::factory_implementation
 {
-    XamlApplication::XamlApplication()
+    App::App()
     {
         // Workaround a bug where twinapi.appcore.dll and threadpoolwinrt.dll gets loaded after it has been unloaded
         // because of a call to GetActivationFactory
@@ -150,7 +150,7 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::factory_implementation
         }
     }
 
-    XamlApplication::~XamlApplication()
+    App::~App()
     {
         for (auto module : m_preloadInstances)
         {

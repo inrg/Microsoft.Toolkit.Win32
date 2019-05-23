@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include "XamlApplication.g.h"
+#include "App.g.h"
 #include <winrt/Windows.UI.Xaml.Hosting.h>
 #include <winrt/Windows.UI.ViewManagement.h>
 #include <winrt/Windows.Foundation.Collections.h>
 #include <Windows.h>
 
-namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
+namespace winrt::Microsoft::Toolkit::Win32::UI::XamlApplication::implementation
 {
     enum ExecutionMode
     {
@@ -14,12 +14,12 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
         Win32 = 1,
     };
 
-    class XamlApplication : public XamlApplicationT<XamlApplication, Windows::UI::Xaml::Markup::IXamlMetadataProvider>
+    class App : public AppT<App, Windows::UI::Xaml::Markup::IXamlMetadataProvider>
     {
     public:
-        XamlApplication();
-        XamlApplication(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Xaml::Markup::IXamlMetadataProvider> providers);
-        ~XamlApplication();
+        App();
+        App(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Xaml::Markup::IXamlMetadataProvider> providers);
+        ~App();
 
         void Initialize();
         void Close();
@@ -45,13 +45,13 @@ namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::implementation
     };
 }
 
-namespace winrt::Microsoft::Toolkit::Win32::UI::XamlHost::factory_implementation
+namespace winrt::Microsoft::Toolkit::Win32::UI::XamlApplication::factory_implementation
 {
-    class XamlApplication : public XamlApplicationT<XamlApplication, implementation::XamlApplication>
+    class App : public AppT<App, implementation::App>
     {
     public:
-        XamlApplication();
-        ~XamlApplication();
+        App();
+        ~App();
     private:
         std::array<HMODULE, 2> m_preloadInstances;
     };

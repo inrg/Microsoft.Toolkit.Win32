@@ -4,6 +4,7 @@
 
 using System;
 using System.Linq;
+using Microsoft.Toolkit.Win32.UI.XamlApplication;
 using WUX = Windows.UI.Xaml;
 
 namespace Microsoft.Toolkit.Win32.UI.XamlHost
@@ -36,9 +37,9 @@ namespace Microsoft.Toolkit.Win32.UI.XamlHost
         /// <summary>
         /// Gets and returns the current UWP XAML Application instance in a reference parameter.
         /// If the current XAML Application instance has not been created for the process (is null),
-        /// a new <see cref="Microsoft.Toolkit.Win32.UI.XamlHost.XamlApplication" /> instance is created and returned.
+        /// a new <see cref="Microsoft.Toolkit.Win32.UI.XamlApplication.App" /> instance is created and returned.
         /// </summary>
-        /// <returns>The instance of <seealso cref="XamlApplication"/></returns>
+        /// <returns>The instance of <seealso cref="XamlApplication.App"/></returns>
         public static IXamlMetadataContainer GetOrCreateXamlMetadataContainer()
         {
             // Instantiation of the application object must occur before creating the DesktopWindowXamlSource instance.
@@ -57,7 +58,7 @@ namespace Microsoft.Toolkit.Win32.UI.XamlHost
                         _metadataContainer = GetCurrentProvider();
                         if (_metadataContainer == null)
                         {
-                            _metadataContainer = new XamlApplication(providers);
+                            _metadataContainer = new XamlApplication.App(providers);
                             return _metadataContainer;
                         }
                     }
@@ -73,10 +74,10 @@ namespace Microsoft.Toolkit.Win32.UI.XamlHost
                 }
             }
 
-            var xamlApplication = _metadataContainer as XamlApplication;
+            var xamlApplication = _metadataContainer as XamlApplication.App;
             if (xamlApplication != null && xamlApplication.IsDisposed)
             {
-                throw new ObjectDisposedException(typeof(XamlApplication).FullName);
+                throw new ObjectDisposedException(typeof(XamlApplication.App).FullName);
             }
 
             return _metadataContainer;

@@ -1,5 +1,5 @@
 
-namespace Microsoft.Toolkit.Win32.UI.XamlHost
+namespace Microsoft.Toolkit.Win32.UI.XamlApplication
 {
     interface IXamlMetadataContainer
     {
@@ -7,10 +7,10 @@ namespace Microsoft.Toolkit.Win32.UI.XamlHost
     };
 
     [default_interface]
-    unsealed runtimeclass XamlApplication : Windows.UI.Xaml.Application, IXamlMetadataContainer, Windows.Foundation.IClosable
+    unsealed runtimeclass App : Windows.UI.Xaml.Application, IXamlMetadataContainer, Windows.Foundation.IClosable
     {
-        XamlApplication(Windows.Foundation.Collections.IVector<Windows.UI.Xaml.Markup.IXamlMetadataProvider> providers);
-        protected XamlApplication();
+        App(Windows.Foundation.Collections.IVector<Windows.UI.Xaml.Markup.IXamlMetadataProvider> providers);
+        protected App();
         protected void Initialize();
 
         Windows.Foundation.IClosable WindowsXamlManager{ get; };

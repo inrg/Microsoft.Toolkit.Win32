@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.0-rc" />
   </ItemGroup>
 
-  <Target Name="CopyAllProjectReferencesOutputs">
+  <Target Name="CopyAllProjectReferencesOutputs" Condition="'$(WapProjPath)'==''">
     <MSBuild Projects="@(ProjectReference)" Properties="Configuration=$(Configuration);Platform=$(Platform)" ContinueOnError="true">
       <Output TaskParameter="TargetOutputs" ItemName="BuildOutputPaths"/>
     </MSBuild>

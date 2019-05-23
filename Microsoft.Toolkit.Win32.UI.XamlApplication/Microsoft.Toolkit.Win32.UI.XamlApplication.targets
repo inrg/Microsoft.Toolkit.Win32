@@ -8,9 +8,10 @@
     <EnableTypeInfoReflection>false</EnableTypeInfoReflection>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="$(MSBuildThisFileDirectory)..\lib\uap10.0\Microsoft.Toolkit.Win32.UI.XamlHost.winmd">
-      <Implementation>Microsoft.Toolkit.Win32.UI.XamlHost.dll</Implementation>
+    <Reference Include="$(MSBuildThisFileDirectory)..\lib\uap10.0\Microsoft.Toolkit.Win32.UI.XamlApplication.winmd">
+      <Implementation>Microsoft.Toolkit.Win32.UI.XamlApplication.dll</Implementation>
     </Reference>
-    <ReferenceCopyLocalPaths Condition="'$(TargetPlatformIdentifier)' != 'UAP'" Include="$(MSBuildThisFileDirectory)..\runtimes\win10-$(XamlApp-Platform)\native\Microsoft.Toolkit.Win32.UI.XamlHost.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\runtimes\win10-$(XamlApp-Platform)\native\Microsoft.Toolkit.Win32.UI.XamlApplication.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\runtimes\win10-$(XamlApp-Platform)\native\Microsoft.Toolkit.Win32.UI.XamlApplication.pdb" />
   </ItemGroup>
 </Project>

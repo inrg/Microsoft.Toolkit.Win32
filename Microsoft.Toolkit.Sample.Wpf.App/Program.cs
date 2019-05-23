@@ -20,7 +20,7 @@ namespace Microsoft.Toolkit.Sample.Wpf.App
             else
             {
 #pragma warning disable CA1065 // Do not raise exceptions in unexpected locations
-                throw new InvalidOperationException($"{typeof(MyControl).Name} only supported for {typeof(global::Windows.UI.Xaml.Application).FullName} instances that implements {typeof(Win32.UI.XamlHost.IXamlMetadataContainer).FullName}");
+                throw new InvalidOperationException($"{typeof(MyControl).Name} only supported for {typeof(global::Windows.UI.Xaml.Application).FullName} instances that implements {typeof(Win32.UI.XamlApplication.IXamlMetadataContainer).FullName}");
 #pragma warning restore CA1065 // Do not raise exceptions in unexpected locations
             }
         }
@@ -67,7 +67,7 @@ namespace Microsoft.Toolkit.Sample.Wpf.App
 
             if (startupKind == StartupKind.CustomAppSettings)
             {
-                using (var xamlApp = new Win32.UI.XamlHost.XamlApplication(new List<IXamlMetadataProvider>()
+                using (var xamlApp = new Win32.UI.XamlApplication.App(new List<IXamlMetadataProvider>()
                 {
                     new MyMetadataProvider(),
                 })
